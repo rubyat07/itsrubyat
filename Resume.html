@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A. K. M. Rubyat Hasan Apu - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            min-height: 100vh;
+            background: #f5f5f5;
+        }
+
+        .sidebar {
+            width: 300px;
+            background: #f0f0f0;
+            padding: 3rem 2rem;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 2px 0 10px rgba(0,0,0,0.05);
+        }
+
+        .profile-section {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .profile-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            background: white;
+            margin: 0 auto 1.5rem;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 0.5rem;
+            letter-spacing: 0.5px;
+            line-height: 1.3;
+        }
+
+        .profile-tagline {
+            font-size: 0.7rem;
+            color: #4a90e2;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 500;
+            line-height: 1.4;
+        }
+
+        .tagline-curator {
+            color: #4a90e2;
+        }
+
+        .tagline-normal {
+            color: #666;
+        }
+
+        .nav-menu {
+            list-style: none;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        .nav-menu li {
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-menu a {
+            display: block;
+            padding: 0.75rem 1rem;
+            text-decoration: none;
+            color: #666;
+            font-size: 0.9rem;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 500;
+            transition: all 0.3s;
+            border-radius: 5px;
+        }
+
+        .nav-menu a:hover,
+        .nav-menu a.active {
+            color: #4a90e2;
+            background: rgba(74, 144, 226, 0.1);
+        }
+        
+        .pressed {
+            transform: scale(0.95);
+            opacity: 0.8;
+            transition: all 0.05s ease-out;
+        }
+
+        .main-content {
+            margin-left: 300px;
+            flex: 1;
+            padding: 0;
+            background: white;
+        }
+
+        .section {
+            min-height: 100vh;
+            padding: 4rem 6rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .home-section {
+            background: linear-gradient(135deg, #e8e8e8 0%, #f5f5f5 100%);
+            position: relative;
+        }
+
+        .home-content {
+            max-width: 600px;
+        }
+
+        .home-content h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 2rem;
+            color: #000;
+        }
+
+        .download-cv {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border: 1px solid rgba(0, 0, 0, 0.2); 
+            color: #000;
+            text-decoration: none;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+            transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            position: relative;
+            backdrop-filter: blur(8px);
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            cursor: pointer;
+        }
+
+        .download-cv:hover {
+            background: rgba(255, 255, 255, 0.5); 
+            border-color: rgba(0, 0, 0, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .download-cv:active {
+            transform: scale(0.98);
+            box-shadow: none; 
+            border-color: rgba(0, 0, 0, 0.1);
+            transition: all 0.05s ease-out;
+        }
+
+        .plant-decoration {
+            position: absolute;
+            right: 10%;
+            bottom: 10%;
+            width: 200px;
+            height: 350px;
+        }
+
+        .plant-pot {
+            width: 120px;
+            height: 80px;
+            background: #fff;
+            border-radius: 5px;
+            position: absolute;
+            bottom: 0;
+            left: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .plant-branches {
+            position: absolute;
+            bottom: 80px;
+            left: 80px;
+        }
+
+        .branch {
+            position: absolute;
+            width: 2px;
+            background: #333;
+            transform-origin: bottom center;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-subtitle {
+            font-size: 0.75rem;
+            color: #999;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: #000;
+            letter-spacing: 2px;
+        }
+
+        .about-content {
+            max-width: 900px;
+        }
+
+        .about-content p {
+            line-height: 1.8;
+            color: #666;
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .skills-section {
+            background: white;
+            padding: 6rem;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem 5rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .skill-item {
+            margin-bottom: 1rem;
+        }
+
+        .skill-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.75rem;
+        }
+
+        .skill-name {
+            font-size: 1rem;
+            color: #333;
+            font-weight: 500;
+        }
+
+        .skill-percentage {
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .skill-bar {
+            width: 100%;
+            height: 8px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 1.5s ease;
+        }
+
+        .skill-progress.blue { background: #4a90e2; }
+        .skill-progress.orange { background: #f5a623; }
+        .skill-progress.teal { background: #50c9ce; }
+        .skill-progress.red { background: #e94b3c; }
+        .skill-progress.purple { background: #9013fe; }
+        .skill-progress.navy { background: #4a5899; }
+
+        .education-section {
+            background: #fafafa;
+            padding: 6rem;
+        }
+
+        .timeline {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .timeline-item h3 {
+            font-size: 1.3rem;
+            color: #000;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item .institution {
+            color: #4a90e2;
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-item .date {
+            color: #999;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .timeline-item p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .timeline-item .result {
+            display: inline-block;
+            background: #f0f0f0;
+            padding: 0.3rem 0.8rem;
+            border-radius: 5px;
+            font-size: 0.9rem;
+            color: #4a90e2;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        .experience-section {
+            background: white;
+            padding: 6rem;
+        }
+
+        .experience-item {
+            padding: 2rem;
+            background: #fafafa;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            border-left: 4px solid #4a90e2;
+        }
+
+        .experience-item ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .experience-item li {
+            padding-left: 1.5rem;
+            position: relative;
+            margin-bottom: 0.8rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .experience-item li:before {
+            content: "▹";
+            position: absolute;
+            left: 0;
+            color: #4a90e2;
+            font-weight: bold;
+        }
+
+        .projects-section {
+            background: #fafafa;
+            padding: 6rem;
+        }
+
+        .project-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 2rem;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .project-card h3 {
+            color: #4a90e2;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .project-card .project-date {
+            color: #999;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .achievements-section {
+            background: white;
+            padding: 6rem;
+        }
+
+        .achievement-item {
+            background: #fafafa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #f5a623;
+        }
+
+        .achievement-item h4 {
+            color: #000;
+            margin-bottom: 0.5rem;
+        }
+
+        .achievement-item .achievement-date {
+            color: #999;
+            font-size: 0.85rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .achievement-item p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        .contact-section {
+            background: #fafafa;
+            padding: 6rem;
+        }
+
+        .contact-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-form {
+            margin-top: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #4a90e2;
+        }
+
+        .submit-btn {
+            padding: 1rem 2.5rem;
+            background: #000;
+            color: white;
+            border: none;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            transition: background 0.3s;
+            border-radius: 5px;
+        }
+
+        .submit-btn:hover {
+            background: #333;
+        }
+
+        .submit-btn:disabled {
+            background: #999;
+            cursor: not-allowed;
+        }
+
+        .contact-info {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .contact-info p {
+            color: #666;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info a {
+            color: #4a90e2;
+            text-decoration: none;
+        }
+
+        .success-message {
+            background: #4caf50;
+            color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .error-message {
+            background: #f44336;
+            color: white;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        /* Chatbot Styles */
+        .chatbot-container {
+            margin-top: 4rem;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(74, 144, 226, 0.1);
+            border: 1px solid #e0e0e0;
+        }
+
+        .chatbot-container h3 {
+            color: #4a90e2;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .chat-messages {
+            height: 400px;
+            overflow-y: auto;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            background: #f9f9f9;
+        }
+
+        .message {
+            margin-bottom: 1rem;
+            padding: 0.75rem;
+            border-radius: 8px;
+            max-width: 80%;
+        }
+
+        .message.user {
+            background: #4a90e2;
+            color: white;
+            margin-left: auto;
+            text-align: right;
+        }
+
+        .message.bot {
+            background: white;
+            color: #333;
+            border: 1px solid #e0e0e0;
+        }
+
+        .chat-input-group {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .chat-input-group input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .chat-input-group button {
+            padding: 0.75rem 1.5rem;
+            background: #4a90e2;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .chat-input-group button:hover {
+            background: #357ab8;
+        }
+
+        .chat-input-group button:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+
+        /* Reviews Section */
+        .reviews-section {
+            background: white;
+            padding: 6rem;
+        }
+
+        .review-form {
+            background: #fafafa;
+            padding: 2rem;
+            border-radius: 10px;
+            margin-bottom: 3rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .review-form h3 {
+            margin-bottom: 1.5rem;
+            color: #333;
+        }
+
+        .rating-input {
+            margin-bottom: 1rem;
+        }
+
+        .stars {
+            display: flex;
+            gap: 0.5rem;
+            font-size: 2rem;
+            margin-top: 0.5rem;
+        }
+
+        .star {
+            cursor: pointer;
+            color: #ddd;
+            transition: color 0.2s;
+        }
+
+        .star:hover,
+        .star.active {
+            color: #f5a623;
+        }
+
+        .reviews-list {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .review-card {
+            background: #fafafa;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #4a90e2;
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .review-author {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .review-date {
+            color: #999;
+            font-size: 0.85rem;
+        }
+
+        .review-stars {
+            color: #f5a623;
+            margin-bottom: 0.5rem;
+        }
+
+        .review-text {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+            }
+
+            .main-content {
+                margin-left: 0;
+            }
+
+            .section {
+                padding: 3rem 2rem;
+            }
+
+            .home-content h1 {
+                font-size: 2.5rem;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .plant-decoration {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <aside class="sidebar">
+        <div class="profile-section">
+            <div class="profile-avatar">
+                <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="100" cy="100" r="100" fill="#f0f0f0"/>
+                    <circle cx="100" cy="70" r="30" fill="#c4a57b"/>
+                    <path d="M 60 150 Q 100 130 140 150 L 140 200 L 60 200 Z" fill="#1a1a1a"/>
+                    <rect x="70" y="140" width="60" height="60" fill="#1a1a1a"/>
+                    <circle cx="100" cy="95" r="8" fill="#8b6f47"/>
+                    <path d="M 85 95 Q 92 105 100 95 Q 108 105 115 95" stroke="#8b6f47" stroke-width="3" fill="none"/>
+                    <rect x="90" y="160" width="20" height="10" fill="#fff"/>
+                </svg>
+            </div>
+            <h1 class="profile-name">A. K. M. Rubyat<br>Hasan Apu</h1>
+            <p class="profile-tagline">
+                <span class="tagline-curator">CIVIL ENGINEER</span><br>
+                <span class="tagline-normal">STRUCTURAL ANALYSIS & DESIGN</span>
+            </p>
+        </div>
+
+        <nav>
+            <ul class="nav-menu">
+                <li><a href="#home" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="main-content">
+        <section id="home" class="section home-section">
+            <div class="home-content">
+                <h1>Hi!<br>I'm A. K. M.<br>Rubyat Hasan<br>Apu</h1>
+                <a href="#" class="download-cv" id="downloadCV">DOWNLOAD CV 📥</a>
+            </div>
+            <div class="plant-decoration">
+                <div class="plant-pot"></div>
+                <div class="plant-branches">
+                    <div class="branch" style="width: 2px; height: 120px; transform: rotate(-30deg);"></div>
+                    <div class="branch" style="width: 2px; height: 100px; transform: rotate(-10deg); left: 10px;"></div>
+                    <div class="branch" style="width: 2px; height: 140px; transform: rotate(0deg); left: 20px;"></div>
+                    <div class="branch" style="width: 2px; height: 110px; transform: rotate(15deg); left: 30px;"></div>
+                    <div class="branch" style="width: 2px; height: 130px; transform: rotate(25deg); left: 40px;"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="section" style="background: white; padding: 6rem;">
+            <div style="width: 100%;">
+                <div class="section-header">
+                    <p class="section-subtitle">INTRODUCTION</p>
+                    <h2 class="section-title">ABOUT ME</h2>
+                </div>
+                <div class="about-content">
+                    <p>A highly motivated and detail-oriented civil engineer with a strong foundation in structural analysis, design, and management. I am passionate about applying technical expertise to contribute to innovative projects and gain practical experience while working toward professional licensure.</p>
+                    <p>With hands-on experience in structural engineering and a commitment to continuous learning, I strive to contribute to sustainable and safe urban development through innovative engineering solutions.</p>
+                    <p><strong>Contact:</strong> 01320585717<br>
+                    <strong>Email:</strong> rubyat.ce@gmail.com<br>
+                    <strong>Languages:</strong> Bengali (Native), English (IELTS Band 7 - CEFR C1)</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="section skills-section">
+            <div style="width: 100%;">
+                <div class="section-header">
+                    <p class="section-subtitle">MY SPECIALTY</p>
+                    <h2 class="section-title">TECHNICAL SKILLS</h2>
+                </div>
+                <div class="skills-grid">
+                    <div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">ETABS 2022</span>
+                                <span class="skill-percentage" style="color: #4a90e2;">85%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress blue" style="width: 85%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">AutoCAD 2025</span>
+                                <span class="skill-percentage" style="color: #f5a623;">90%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress orange" style="width: 90%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Programming (C++, Python)</span>
+                                <span class="skill-percentage" style="color: #50c9ce;">70%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress teal" style="width: 70%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">STAAD Pro V8i</span>
+                                <span class="skill-percentage" style="color: #e94b3c;">80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress red" style="width: 80%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Autodesk Revit 2025</span>
+                                <span class="skill-percentage" style="color: #9013fe;">75%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress purple" style="width: 75%;"></div>
+                            </div>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-header">
+                                <span class="skill-name">Zotero (Referencing)</span>
+                                <span class="skill-percentage" style="color: #4a5899;">80%</span>
+                            </div>
+                            <div class="skill-bar">
+                                <div class="skill-progress navy" style="width: 80%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="section education-section">
+            <div style="width: 100%;">
+                <div class="section-header">
+                    <p class="section-subtitle">ACADEMIC BACKGROUND</p>
+                    <h2 class="section-title">EDUCATION</h2>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <h3>Bachelor of Science in Civil Engineering</h3>
+                        <p class="institution">University of Asia Pacific</p>
+                        <p class="date">2024</p>
+                        <span class="result">CGPA: 3.52/4.00</span>
+                        <p style="margin-top: 1rem;">Completed comprehensive coursework in structural analysis, design, and management with a focus on sustainable urban development and innovative engineering solutions.</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>Higher Secondary Certificate (HSC)</h3>
+                        <p class="institution">B C I C College</p>
+                        <p class="date">2019</p>
+                        <span class="result">GPA: 4.42/5.00</span>
+                        <p style="margin-top: 1rem;">Science Group</p>
+                    </div>
+                    <div class="timeline-item">
+                        <h3>Secondary School Certificate (SSC)</h3>
+                        <p class="institution">Monipur High School</p>
+                        <p class="date">2017</p>
+                        <span class="result">GPA: 5.00/5.00</span>
+                        <p style="margin-top: 1rem;">Science Group</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="section experience-section">
+            <div style="width: 100%;">
+                <div class="section-header">
+                    <p class="section-subtitle">CAREER</p>
+                    <h2 class="section-title">PROFESSIONAL EXPERIENCE</h2>
+                </div>
+                <div class="timeline">
+                    <div class="experience-item">
+                        <h3>Junior Engineer</h3>
+                        <p class="institution">Thikana Living & Consultant Ltd, Dhaka, Bangladesh</p>
+                        <p class="date">October 2024 - August 2025</p>
+                        <ul>
+                            <li>Assisted in structural analysis of multi-storied buildings using ETABS and STAAD Pro</li>
+                            <li>Conducted comprehensive on-site inspections to ensure quality and compliance</li>
+                            <li>Prepared detailed technical drawings with AutoCAD for various construction projects</li>
+                            <li>Contributed to infrastructure project planning and development initiatives</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="section projects-section">
+            <div style="width: 100%;">
+                <div class="section-header">
+                    <p class="section-subtitle">ACADEMIC WORK</p>
+                    <h2 class="section-title">PROJECTS & THESIS</h2>
+                </div>
+                <div class="timeline">
+                    <div class="project-card">
+                        <h3>Undergraduate Thesis</h3>
+                        <p class="project-date">July 2024</p>
+                        <p><strong>Title:</strong> "A Comprehensive Approach to Retrofitting RC Building Using Nonlinear Pushover Analysis"</p>
+                        <p style="margin-top: 1rem;">Conducted comprehensive research on retrofitting reinforced concrete buildings using advanced nonlinear pushover analysis techniques to enhance structural integrity and seismic performance.</p>
+                    </div>
+                    <div class="project-card">
+                        <h3>CE412 Structural Engineering Lab II Project</h3>
+                        <p class="project-date">June 2024</p>
+                        <p><strong>Title:</strong> "Analysis and Design of a Multi-storied RC Building as per BNBC 2020"</p>
+                        <p style="margin-top: 1rem;">Comprehensive structural analysis and design project following Bangladesh National Building Code 2020 standards.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="achievements" class="section achievements-section">
+            <div style="width: 100%;">
+                <div class="section-header">
+                    <p class="section-subtitle">RECOGNITION</p>
+                    <h2 class="section-title">ACHIEVEMENTS & AWARDS</h2>
+                </div>
+                <div class="timeline">
+                    <div class="achievement-item">
+                        <h4>🏆 Vice Chancellor's Meritorious Student Award</h4>
+                        <p class="achievement-date">Spring 2020 | Issued: August 2023</p>
+                        <p>Awarded for academic excellence with CGPA of 3.90+/4.00</p>
+                    </div>
+                    <div class="achievement-item">
+                        <h4>🥇 1st Position in AutoCAD Detailing Competition</h4>
+                        <p class="achievement-date">Spring 2021 | December 2021</p>
+                        <p>Organized by Civil Engineering Structure Club, University of Asia Pacific</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="reviews" class="section reviews-section">
+            <div style="width: 100%;">
+                <div class="section-header">
+                    <p class="section-subtitle">TESTIMONIALS</p>
+                    <h2 class="section-title">REVIEWS & COMMENTS</h2>
+                </div>
+
+                <div class="review-form">
+                    <h3>Leave a Review</h3>
+                    <div class="rating-input">
+                        <label>Rating:</label>
+                        <div class="stars" id="ratingStars">
+                            <span class="star" data-rating="1">★</span>
+                            <span class="star" data-rating="2">★</span>
+                            <span class="star" data-rating="3">★</span>
+                            <span class="star" data-rating="4">★</span>
+                            <span class="star" data-rating="5">★</span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="reviewName" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="reviewText" rows="4" placeholder="Write your review..." required></textarea>
+                    </div>
+                    <button class="submit-btn" id="submitReview">Submit Review</button>
+                </div>
+
+                <div class="reviews-list" id="reviewsList"></div>
+            </div>
+        </section>
+
+        <section id="contact" class="section contact-section">
+            <div style="width: 100%;">
+                <div class="section-header">
+                    <p class="section-subtitle">GET IN TOUCH</p>
+                    <h2 class="section-title">CONTACT ME</h2>
+                </div>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <p><strong>Email:</strong> <a href="mailto:rubyat.ce@gmail.com">rubyat.ce@gmail.com</a></p>
+                        <p><strong>Location:</strong> Dhaka, Bangladesh</p>
+                    </div>
+
+                    <div class="success-message" id="successMessage">
+                        ✓ Message sent successfully! I'll get back to you soon.
+                    </div>
+                    <div class="error-message" id="errorMessage">
+                        ✗ Please fill in all fields.
+                    </div>
+
+                    <form class="contact-form" id="contactForm">
+                        <div class="form-group">
+                            <input type="text" id="contactName" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="contactEmail" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="contactSubject" placeholder="Subject" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="contactMessage" rows="6" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="submit-btn" id="submitContact">Send Message</button>
+                    </form>
+                    
+                    <div class="chatbot-container">
+                        <div class="section-header" style="margin-top: 0; margin-bottom: 2rem;">
+                            <p class="section-subtitle">AI ASSISTANT</p>
+                            <h3 class="section-title" style="font-size: 1.8rem;">ASK ABOUT MY PORTFOLIO</h3>
+                        </div>
+                        <div class="chat-messages" id="chatMessages">
+                            <div class="message bot">
+                                👋 Hello! I'm an AI assistant. Ask me anything about Rubyat's portfolio, skills, experience, or projects!
+                            </div>
+                        </div>
+                        <div class="chat-input-group">
+                            <input type="text" id="chatInput" placeholder="Type your question here...">
+                            <button id="sendChat">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Navigation
+        const PRESSED_CLASS = 'pressed';
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('mousedown', () => anchor.classList.add(PRESSED_CLASS));
+            anchor.addEventListener('mouseup', () => anchor.classList.remove(PRESSED_CLASS));
+            anchor.addEventListener('mouseleave', () => anchor.classList.remove(PRESSED_CLASS));
+
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+                
+                document.querySelectorAll('.nav-menu a').forEach(link => {
+                    link.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+
+// Download CV functionality
+document.getElementById('downloadCV').addEventListener('click', function(e) {
+    e.preventDefault();
+    
+    // Create a temporary link element
+    const link = document.createElement('a');
+    link.href = 'D:\My portfolio website\Gemini\Asset\doc'; // Path to your PDF file
+    link.download = 'Engr.Rubyat_Hasan_01320585717_CV.pdf'; // Name for the downloaded file
+    
+    // Trigger the download
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    // Optional: Show success message
+    alert('📥 CV download started!');
+});
+
+            // Create blob and download
+            const blob = new Blob([cvContent], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'Rubyat_Hasan_CV.txt';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);
+            
+            alert('📥 CV downloaded successfully!');
+        });
+
+        // Skills animation
+        const observerOptions = { threshold: 0.5 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const progressBars = entry.target.querySelectorAll('.skill-progress');
+                    progressBars.forEach(bar => {
+                        const width = bar.style.width;
+                        bar.style.width = '0%';
+                        setTimeout(() => { bar.style.width = width; }, 100);
+                    });
+                }
+            });
+        }, observerOptions);
+
+        const skillsSection = document.querySelector('#skills');
+        if (skillsSection) observer.observe(skillsSection);
+
+        // Contact Form
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('contactName').value;
+            const email = document.getElementById('contactEmail').value;
+            const subject = document.getElementById('contactSubject').value;
+            const message = document.getElementById('contactMessage').value;
+            
+            if (!name || !email || !subject || !message) {
+                const errorMsg = document.getElementById('errorMessage');
+                errorMsg.style.display = 'block';
+                setTimeout(() => errorMsg.style.display = 'none', 3000);
+                return;
+            }
+            
+            // Simulate sending (in real app, this would send to a backend)
+            const submitBtn = document.getElementById('submitContact');
+            submitBtn.disabled = true;
+            submitBtn.textContent = 'Sending...';
+            
+            setTimeout(() => {
+                const successMsg = document.getElementById('successMessage');
+                successMsg.style.display = 'block';
+                
+                // Create mailto link
+                const mailtoLink = `mailto:rubyat.ce@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(`From: ${name} (${email})\n\n${message}`)}`;
+                window.location.href = mailtoLink;
+                
+                this.reset();
+                submitBtn.disabled = false;
+                submitBtn.textContent = 'Send Message';
+                
+                setTimeout(() => successMsg.style.display = 'none', 5000);
+            }, 1000);
+        });
+
+        // Review System
+        let selectedRating = 0;
+        let reviews = [];
+
+        // Star rating interaction
+        document.querySelectorAll('.star').forEach(star => {
+            star.addEventListener('click', function() {
+                selectedRating = parseInt(this.dataset.rating);
+                document.querySelectorAll('.star').forEach((s, index) => {
+                    if (index < selectedRating) {
+                        s.classList.add('active');
+                    } else {
+                        s.classList.remove('active');
+                    }
+                });
+            });
+
+            star.addEventListener('mouseenter', function() {
+                const rating = parseInt(this.dataset.rating);
+                document.querySelectorAll('.star').forEach((s, index) => {
+                    if (index < rating) {
+                        s.style.color = '#f5a623';
+                    } else {
+                        s.style.color = '#ddd';
+                    }
+                });
+            });
+        });
+
+        document.getElementById('ratingStars').addEventListener('mouseleave', function() {
+            document.querySelectorAll('.star').forEach((s, index) => {
+                if (index < selectedRating) {
+                    s.style.color = '#f5a623';
+                } else {
+                    s.style.color = '#ddd';
+                }
+            });
+        });
+
+        // Submit review
+        document.getElementById('submitReview').addEventListener('click', function() {
+            const name = document.getElementById('reviewName').value;
+            const text = document.getElementById('reviewText').value;
+
+            if (!name || !text || selectedRating === 0) {
+                alert('Please fill in all fields and select a rating.');
+                return;
+            }
+
+            const review = {
+                name: name,
+                rating: selectedRating,
+                text: text,
+                date: new Date().toLocaleDateString()
+            };
+
+            reviews.unshift(review);
+            displayReviews();
+
+            // Reset form
+            document.getElementById('reviewName').value = '';
+            document.getElementById('reviewText').value = '';
+            selectedRating = 0;
+            document.querySelectorAll('.star').forEach(s => s.classList.remove('active'));
+
+            alert('✓ Thank you for your review!');
+        });
+
+        function displayReviews() {
+            const reviewsList = document.getElementById('reviewsList');
+            reviewsList.innerHTML = reviews.map(review => `
+                <div class="review-card">
+                    <div class="review-header">
+                        <span class="review-author">${review.name}</span>
+                        <span class="review-date">${review.date}</span>
+                    </div>
+                    <div class="review-stars">${'★'.repeat(review.rating)}${'☆'.repeat(5 - review.rating)}</div>
+                    <p class="review-text">${review.text}</p>
+                </div>
+            `).join('');
+        }
+
+        // Add some sample reviews
+        reviews = [
+            {
+                name: "Sarah Ahmed",
+                rating: 5,
+                text: "Excellent work on the structural analysis project. Very professional and detail-oriented!",
+                date: "11/15/2025"
+            },
+            {
+                name: "Mohammad Khan",
+                rating: 5,
+                text: "Great engineer with strong technical skills in ETABS and AutoCAD. Highly recommended!",
+                date: "11/10/2025"
+            }
+        ];
+        displayReviews();
+
+        // AI Chatbot functionality
+        const chatMessages = document.getElementById('chatMessages');
+        const chatInput = document.getElementById('chatInput');
+        const sendChatBtn = document.getElementById('sendChat');
+
+        const portfolioData = {
+            name: "A. K. M. Rubyat Hasan Apu",
+            title: "Civil Engineer",
+            specialization: "Structural Analysis & Design",
+            education: "Bachelor of Science in Civil Engineering from University of Asia Pacific (2024), CGPA: 3.52/4.00",
+            experience: "Junior Engineer at Thikana Living & Consultant Ltd (October 2024 - August 2025)",
+            skills: ["ETABS 2022 (85%)", "AutoCAD 2025 (90%)", "STAAD Pro V8i (80%)", "Autodesk Revit 2025 (75%)", "Programming in C++ and Python (70%)", "Zotero (80%)"],
+            email: "rubyat.ce@gmail.com",
+            phone: "01320585717",
+            location: "Dhaka, Bangladesh",
+            languages: "Bengali (Native), English (IELTS Band 7 - CEFR C1)",
+            achievements: ["Vice Chancellor's Meritorious Student Award", "1st Position in AutoCAD Detailing Competition", "Certified Supply Chain Analyst"],
+            thesis: "A Comprehensive Approach to Retrofitting RC Building Using Nonlinear Pushover Analysis"
+        };
+
+        function getBotResponse(userMessage) {
+            const msg = userMessage.toLowerCase();
+            
+            if (msg.includes('name')) {
+                return `His name is ${portfolioData.name}.`;
+            }
+            if (msg.includes('education') || msg.includes('university') || msg.includes('degree')) {
+                return `He completed his ${portfolioData.education}`;
+            }
+            if (msg.includes('experience') || msg.includes('work') || msg.includes('job')) {
+                return `He currently works as a ${portfolioData.experience}. He assists in structural analysis using ETABS and STAAD Pro, conducts on-site inspections, and prepares technical drawings with AutoCAD.`;
+            }
+            if (msg.includes('skill') || msg.includes('software') || msg.includes('tools')) {
+                return `His technical skills include: ${portfolioData.skills.join(', ')}. He's particularly proficient in AutoCAD and ETABS!`;
+            }
+            if (msg.includes('contact') || msg.includes('email') || msg.includes('phone')) {
+                return `You can reach him at:\nEmail: ${portfolioData.email}\nPhone: ${portfolioData.phone}\nLocation: ${portfolioData.location}`;
+            }
+            if (msg.includes('achievement') || msg.includes('award')) {
+                return `Some of his notable achievements include: ${portfolioData.achievements.join(', ')}.`;
+            }
+            if (msg.includes('thesis') || msg.includes('research') || msg.includes('project')) {
+                return `His undergraduate thesis was on "${portfolioData.thesis}". He also worked on several projects including multi-storied RC building design as per BNBC 2020.`;
+            }
+            if (msg.includes('language')) {
+                return `He speaks ${portfolioData.languages}.`;
+            }
+            if (msg.includes('hello') || msg.includes('hi') || msg.includes('hey')) {
+                return `Hello! I'm here to help you learn about ${portfolioData.name}'s portfolio. You can ask me about his education, experience, skills, projects, or contact information!`;
+            }
+            
+            return `I can help you with information about ${portfolioData.name}'s education, experience, skills, achievements, projects, or contact details. What would you like to know?`;
+        }
+
+        function sendMessage() {
+            const message = chatInput.value.trim();
+            if (!message) return;
+
+            // Add user message
+            const userDiv = document.createElement('div');
+            userDiv.className = 'message user';
+            userDiv.textContent = message;
+            chatMessages.appendChild(userDiv);
+
+            chatInput.value = '';
+            chatInput.disabled = true;
+            sendChatBtn.disabled = true;
+            sendChatBtn.textContent = 'Thinking...';
+
+            // Simulate bot thinking
+            setTimeout(() => {
+                const botDiv = document.createElement('div');
+                botDiv.className = 'message bot';
+                botDiv.textContent = getBotResponse(message);
+                chatMessages.appendChild(botDiv);
+
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                chatInput.disabled = false;
+                sendChatBtn.disabled = false;
+                sendChatBtn.textContent = 'Send';
+                chatInput.focus();
+            }, 800);
+        }
+
+        sendChatBtn.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+
+        // Active section highlighting
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('.section');
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === '#' + current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
+                        
